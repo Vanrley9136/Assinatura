@@ -39,6 +39,11 @@
             color: #000;
             text-align: left;
         }
+        .info .name, .info .position, .info .email {
+            padding-left: 10px;
+            border-left: 3px solid #ffa000;
+            margin-bottom: 10px;
+        }
         .info .name {
             font-weight: 700;
             font-size: 24px;
@@ -50,9 +55,6 @@
         }
         .info .email {
             font-size: 14px;
-        }
-        .info span.icon {
-            margin-right: 8px;
         }
     </style>
 </head>
@@ -78,15 +80,12 @@
             <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
             <div class="info">
                 <div class="name">
-                    <span class="icon">👤</span>
                     <span ng-bind="nome"></span>
                 </div>
                 <div class="position">
-                    <span class="icon">💼</span>
                     <span ng-bind="cargo"></span>
                 </div>
                 <div class="email">
-                    <span class="icon">✉️</span>
                     <span ng-bind="email"></span>
                 </div>
             </div>
