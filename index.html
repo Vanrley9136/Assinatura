@@ -14,16 +14,26 @@
         body, form, div {
             font-family: 'Poppins', sans-serif;
         }
+        .container {
+            max-width: 1000px;
+        }
+        .title {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+        }
         .control {
             position: relative;
             width: 100%;
-            max-width: 900px;
             height: 180px;
-            margin: 0 auto;
+            margin: 20px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
         .control img {
             position: absolute;
@@ -35,8 +45,9 @@
         }
         .info {
             position: absolute;
-            top: 50px;
+            top: 50%;
             right: 50px;
+            transform: translateY(-50%);
             color: #000;
             text-align: left;
         }
@@ -60,7 +71,8 @@
     </style>
 </head>
 <body ng-app="">
-    <div class="container mt-4">
+    <div class="container">
+        <div class="title">Gerador de Assinatura TVN</div>
         <form class="mb-4">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -78,7 +90,7 @@
             </div>
         </form>
         <div class="control" id="capture">
-            <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
+            <img src="/mnt/data/image.png" alt="Assinatura">
             <div class="info">
                 <div class="name">
                     <span ng-bind="nome"></span>
