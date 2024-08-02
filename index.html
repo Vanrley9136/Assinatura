@@ -6,7 +6,7 @@
     <title>Assinatura MAXX</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Assinatura MAXX https://i.postimg.cc/ZYHLbfR0/image.png - Gerador de Assinaturas MAXX">
+    <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
     <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
@@ -177,6 +177,11 @@
             background-color: #f8f9fa;
             border-top: 1px solid #e9ecef;
         }
+
+        /* Error Message Styles */
+        .invalid-feedback {
+            display: block;
+        }
     </style>
 </head>
 <body ng-app="">
@@ -190,23 +195,26 @@
     <!-- Main Container -->
     <div class="container">
         <!-- Form Section -->
-        <form class="mb-4">
+        <form class="mb-4" name="signatureForm" novalidate>
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" ng-model="nome" required>
+                    <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome">
+                    <div class="invalid-feedback">Por favor, insira seu nome.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cargo">Cargo</label>
-                    <input type="text" class="form-control" id="cargo" ng-model="cargo" required>
+                    <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo">
+                    <div class="invalid-feedback">Por favor, insira seu cargo.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="email">E-mail</label>
-                    <input type="text" class="form-control" id="email" ng-model="email" required>
+                    <input type="email" class="form-control" id="email" ng-model="email" ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required>
+                    <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="skype">Skype</label>
-                    <input type="text" class="form-control" id="skype" ng-model="skype" required>
+                    <input type="text" class="form-control" id="skype" ng-model="skype" name="skype">
                 </div>
             </div>
         </form>
@@ -215,11 +223,11 @@
         <div class="control" id="capture">
             <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
             <div class="info">
-                <div class="name">
+                <div class="name" ng-if="nome">
                     <i class='bx bxs-user'></i> <!-- User Icon -->
                     <span ng-bind="nome"></span>
                 </div>
-                <div class="position">
+                <div class="position" ng-if="cargo">
                     <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
                     <span ng-bind="cargo"></span>
                 </div>
@@ -227,7 +235,7 @@
                     <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                     <span ng-bind="email"></span>
                 </div>
-                <div class="skype">
+                <div class="skype" ng-if="skype">
                     <i class='bx bxl-skype'></i> <!-- Skype Icon -->
                     <span ng-bind="skype"></span>
                 </div>
