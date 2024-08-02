@@ -236,23 +236,23 @@
         <div class="control" id="capture">
             <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
             <div class="info">
-                <div class="name" ng-if="nome" ng-class="{'fade-in': nome}">
+                <div class="name fade-in" ng-if="nome">
                     <i class='bx bxs-user'></i> <!-- User Icon -->
                     <span ng-bind="nome"></span>
                 </div>
-                <div class="position" ng-if="cargo" ng-class="{'fade-in': cargo}">
+                <div class="position fade-in" ng-if="cargo">
                     <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
                     <span ng-bind="cargo"></span>
                 </div>
-                <div class="email" ng-if="email" ng-class="{'fade-in': email}">
+                <div class="email fade-in" ng-if="email">
                     <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                     <span ng-bind="email"></span>
                 </div>
-                <div class="phone" ng-if="phone" ng-class="{'fade-in': phone}">
+                <div class="phone fade-in" ng-if="phone">
                     <i class='bx bxs-phone'></i> <!-- Phone Icon -->
                     <span ng-bind="phone"></span>
                 </div>
-                <div class="skype" ng-if="skype" ng-class="{'fade-in': skype}">
+                <div class="skype fade-in" ng-if="skype">
                     <i class='bx bxl-skype'></i> <!-- Skype Icon -->
                     <span ng-bind="skype"></span>
                 </div>
@@ -336,4 +336,11 @@
 
         // Function to format the phone number
         function formatPhoneNumber(input) {
-           
+            var phone = input.value.replace(/\D/g, '');
+            phone = phone.substring(0, 11); // Allow only 11 digits
+            var formattedPhone = phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+            input.value = formattedPhone;
+        }
+    </script>
+</body>
+</html>
