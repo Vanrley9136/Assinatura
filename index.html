@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="signatureApp">
+<html lang="pt" ng-app="signatureApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -260,19 +260,19 @@
         <div class="stepper">
             <div class="step" ng-class="{'active': step === 1}">
                 <div class="step-number">1</div>
-                <div class="step-text">STEP 1</div>
+                <div class="step-text">INFORMAÇÕES BÁSICAS</div>
             </div>
             <div class="step" ng-class="{'active': step === 2}">
                 <div class="step-number">2</div>
-                <div class="step-text">STEP 2</div>
+                <div class="step-text">DETALHES DE CONTATO</div>
             </div>
             <div class="step" ng-class="{'active': step === 3}">
                 <div class="step-number">3</div>
-                <div class="step-text">STEP 3</div>
+                <div class="step-text">VISUALIZAR</div>
             </div>
             <div class="step" ng-class="{'active': step === 4}">
                 <div class="step-number">4</div>
-                <div class="step-text">STEP 4</div>
+                <div class="step-text">CAPTURAR E SALVAR</div>
             </div>
         </div>
 
@@ -295,7 +295,7 @@
                     <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Obrigatório.</div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" ng-click="nextStep()" ng-disabled="!nome || !cargo || !email">Next</button>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()" ng-disabled="!nome || !cargo || !email">Próximo</button>
         </form>
 
         <!-- Contact Details Section -->
@@ -310,8 +310,8 @@
                     <input type="text" class="form-control" id="skype" ng-model="skype" name="skype" ng-change="updatePreview()">
                 </div>
             </div>
-            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Previous</button>
-            <button type="button" class="btn btn-primary" ng-click="nextStep()">Next</button>
+            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Anterior</button>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()">Próximo</button>
         </form>
 
         <!-- Preview Section -->
@@ -342,8 +342,8 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Previous</button>
-            <button type="button" class="btn btn-primary" ng-click="nextStep()">Capture</button>
+            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Anterior</button>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()">Capturar</button>
         </div>
 
         <!-- Capture and Save Section -->
@@ -352,11 +352,11 @@
                 <button type="button" class="btn btn-primary btn-lg capture-btn" onclick="captura()">
                     <i class='bx bxs-camera'></i> Capturar
                 </button>
-                <button type="button" class="btn btn-success btn-lg save-btn" onclick="salvarImagem()" id="arquivo" style="display:none;">
+                <button type="button" class="btn btn-success btn-lg save-btn" id="arquivo" style="display:none;">
                     <i class='bx bxs-save'></i> Salvar
                 </button>
             </div>
-            <button type="button" class="btn btn-secondary mt-4" ng-click="previousStep()">Previous</button>
+            <button type="button" class="btn btn-secondary mt-4" ng-click="previousStep()">Anterior</button>
         </div>
 
         <!-- Canvas Container -->
