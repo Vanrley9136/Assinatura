@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" ng-app="signatureApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +7,28 @@
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta property="og:description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
     <meta property="og:type" content="website">
-    <meta name="description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta name="twitter:description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
     <meta name="twitter:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
 
     <!-- Favicon -->
-    <link rel="shortcut icon"
-        href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp"
-        type="image/x-icon">
-    <link rel="icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp"
-        type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp" type="image/x-icon">
+    <link rel="icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp" type="image/x-icon">
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!-- html2canvas for capturing screenshots -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -57,9 +47,7 @@
         }
 
         /* Body, Form, Div Styles */
-        body,
-        form,
-        div {
+        body, form, div {
             font-family: 'Klavika Medium', sans-serif;
         }
 
@@ -88,8 +76,7 @@
         /* Container Styles */
         .container {
             max-width: 1000px;
-            margin-top: -50px;
-            /* Move content up to overlap header */
+            margin-top: -50px; /* Move content up to overlap header */
         }
 
         /* Control Styles */
@@ -126,24 +113,19 @@
         }
 
         /* Name, Position, Email, Skype Styles with Icons */
-        .info .name,
-        .info .position,
-        .info .email,
-        .info .skype {
+        .info .name, .info .position, .info .email, .info .skype {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        .info .name i,
-        .info .position i,
-        .info .email i,
-        .info .skype i {
-            color: #ffa000;
-            /* Icon color */
+        .info .name i, .info .position i, .info .email i, .info .skype i {
+            color: #ffa000; /* Icon color */
             font-size: 20px;
-            margin-right: 10px;
-            /* Space between icon and text */
+            margin-right: 10px; /* Space between icon and text */
         }
 
         /* Name Styles */
@@ -161,8 +143,7 @@
         }
 
         /* Email Styles */
-        .info .email,
-        .info .skype {
+        .info .email, .info .skype {
             font-size: 14px;
         }
 
@@ -204,17 +185,22 @@
         .invalid-feedback {
             display: block;
         }
+
+        /* Animation Styles */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
     </style>
 </head>
-
-<body ng-app="">
+<body ng-controller="signatureController">
     <!-- Header Section -->
     <div class="header">
         <div class="title">
             <i class='bx bxs-pencil'></i> Gerador de Assinatura MAXX
         </div>
     </div>
-
+    
     <!-- Main Container -->
     <div class="container">
         <!-- Form Section -->
@@ -222,25 +208,22 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" ng-model="nome"
-                        ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome">
-                    <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                    <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome" ng-change="updatePreview()">
+                    <div class="invalid-feedback" ng-show="signatureForm.nome.$touched && !nome">Por favor, insira seu nome.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cargo">Cargo</label>
-                    <input type="text" class="form-control" id="cargo" ng-model="cargo"
-                        ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo">
-                    <div class="invalid-feedback">Por favor, insira seu cargo.</div>
+                    <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo" ng-change="updatePreview()">
+                    <div class="invalid-feedback" ng-show="signatureForm.cargo.$touched && !cargo">Por favor, insira seu cargo.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" ng-model="email"
-                        ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required>
-                    <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+                    <input type="email" class="form-control" id="email" ng-model="email" ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required ng-change="updatePreview()">
+                    <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Por favor, insira um e-mail válido.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="skype">Skype</label>
-                    <input type="text" class="form-control" id="skype" ng-model="skype" name="skype">
+                    <input type="text" class="form-control" id="skype" ng-model="skype" name="skype" ng-change="updatePreview()">
                 </div>
             </div>
         </form>
@@ -249,24 +232,20 @@
         <div class="control" id="capture">
             <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
             <div class="info">
-                <div class="name" ng-if="nome">
-                    <i class='bx bxs-user'></i>
-                    <!-- User Icon -->
+                <div class="name" ng-if="nome" ng-class="{'fade-in': nome}">
+                    <i class='bx bxs-user'></i> <!-- User Icon -->
                     <span ng-bind="nome"></span>
                 </div>
-                <div class="position" ng-if="cargo">
-                    <i class='bx bxs-briefcase'></i>
-                    <!-- Briefcase Icon -->
+                <div class="position" ng-if="cargo" ng-class="{'fade-in': cargo}">
+                    <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
                     <span ng-bind="cargo"></span>
                 </div>
-                <div class="email">
-                    <i class='bx bxs-envelope'></i>
-                    <!-- Envelope Icon -->
+                <div class="email" ng-if="email" ng-class="{'fade-in': email}">
+                    <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                     <span ng-bind="email"></span>
                 </div>
-                <div class="skype" ng-if="skype">
-                    <i class='bx bxl-skype'></i>
-                    <!-- Skype Icon -->
+                <div class="skype" ng-if="skype" ng-class="{'fade-in': skype}">
+                    <i class='bx bxl-skype'></i> <!-- Skype Icon -->
                     <span ng-bind="skype"></span>
                 </div>
             </div>
@@ -274,12 +253,10 @@
 
         <!-- Button Section -->
         <div class="text-center mt-4">
-            <button type="button" class="btn btn-primary btn-lg capture-btn" ng-disabled="!nome || !cargo || !email"
-                onclick="captura()">
+            <button type="button" class="btn btn-primary btn-lg capture-btn" ng-disabled="!nome || !cargo || !email" onclick="captura()">
                 <i class='bx bxs-camera'></i> Capturar
             </button>
-            <button type="button" class="btn btn-success btn-lg save-btn" onclick="salvarImagem()" id="arquivo"
-                style="display:none;">
+            <button type="button" class="btn btn-success btn-lg save-btn" onclick="salvarImagem()" id="arquivo" style="display:none;">
                 <i class='bx bxs-save'></i> Salvar
             </button>
         </div>
@@ -303,12 +280,33 @@
 
     <!-- JavaScript Functions -->
     <script>
+        // Initialize AngularJS app
+        var app = angular.module('signatureApp', []);
+
+        // Define the controller
+        app.controller('signatureController', function($scope) {
+            // Update the preview based on input changes
+            $scope.updatePreview = function() {
+                // Get all info elements
+                var infoElements = document.querySelectorAll('.info > div');
+
+                // Apply animation styles if data exists
+                infoElements.forEach(function(el) {
+                    if (el.textContent.trim() !== '') {
+                        el.classList.add('fade-in');
+                    } else {
+                        el.classList.remove('fade-in');
+                    }
+                });
+            };
+        });
+
         // Function to capture the signature section
         function captura() {
             var loadingOverlay = document.getElementById('loading');
             loadingOverlay.classList.add('show');
-            setTimeout(function () {
-                html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function (canvas) {
+            setTimeout(function() {
+                html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function(canvas) {
                     document.getElementById('canvascontainer').innerHTML = '';
                     document.getElementById('canvascontainer').appendChild(canvas);
                     document.getElementById('arquivo').style.display = 'block';
@@ -321,7 +319,7 @@
         function salvarImagem() {
             var canvas = document.getElementsByTagName("canvas")[0];
             var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            var nome = document.getElementById('nome').value;
+            var nome = document.getElementById('nome').value; 
             var link = document.createElement('a');
             link.download = nome + ".png";
             link.href = image;
@@ -329,5 +327,4 @@
         }
     </script>
 </body>
-
 </html>
