@@ -67,7 +67,7 @@
         .control {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 220px;
             margin: 20px 0;
             border: 1px solid #ddd;
             border-radius: 15px;
@@ -96,14 +96,14 @@
             text-align: left;
         }
 
-        /* Name, Position, Email Styles with Icons */
-        .info .name, .info .position, .info .email {
+        /* Name, Position, Email, Skype Styles with Icons */
+        .info .name, .info .position, .info .email, .info .skype {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
 
-        .info .name i, .info .position i, .info .email i {
+        .info .name i, .info .position i, .info .email i, .info .skype i {
             color: #ffa000; /* Icon color */
             font-size: 20px;
             margin-right: 10px; /* Space between icon and text */
@@ -124,7 +124,7 @@
         }
 
         /* Email Styles */
-        .info .email {
+        .info .email, .info .skype {
             font-size: 14px;
         }
 
@@ -176,17 +176,21 @@
         <!-- Form Section -->
         <form class="mb-4">
             <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="nome" ng-model="nome" required>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="cargo">Cargo</label>
                     <input type="text" class="form-control" id="cargo" ng-model="cargo" required>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="email">E-mail</label>
                     <input type="text" class="form-control" id="email" ng-model="email" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="skype">Skype</label>
+                    <input type="text" class="form-control" id="skype" ng-model="skype" required>
                 </div>
             </div>
         </form>
@@ -206,6 +210,10 @@
                 <div class="email">
                     <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                     <span ng-bind="email"></span>
+                </div>
+                <div class="skype">
+                    <i class='bx bxl-skype'></i> <!-- Skype Icon -->
+                    <span ng-bind="skype"></span>
                 </div>
             </div>
         </div>
