@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura MAXX</title>
+    <title>Assinatura Starlink</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta property="og:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
+    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
     <meta property="og:type" content="website">
-    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail e Skype para uma assinatura profissional.">
+    <meta name="twitter:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
+    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta name="twitter:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
 
     <!-- Favicon -->
@@ -112,8 +112,8 @@
             text-align: left;
         }
 
-        /* Name, Position, Email, Skype Styles with Icons */
-        .info .name, .info .position, .info .email, .info .skype {
+        /* Name, Position, Email, Phone, Skype Styles with Icons */
+        .info .name, .info .position, .info .email, .info .phone, .info .skype {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
@@ -122,7 +122,7 @@
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        .info .name i, .info .position i, .info .email i, .info .skype i {
+        .info .name i, .info .position i, .info .email i, .info .phone i, .info .skype i {
             color: #ffa000; /* Icon color */
             font-size: 20px;
             margin-right: 10px; /* Space between icon and text */
@@ -142,8 +142,8 @@
             color: #333;
         }
 
-        /* Email Styles */
-        .info .email, .info .skype {
+        /* Email, Phone, Skype Styles */
+        .info .email, .info .phone, .info .skype {
             font-size: 14px;
         }
 
@@ -197,7 +197,7 @@
     <!-- Header Section -->
     <div class="header">
         <div class="title">
-            <i class='bx bxs-pencil'></i> Gerador de Assinatura MAXX
+            <i class='bx bxs-pencil'></i> Gerador de Assinatura Starlink
         </div>
     </div>
     
@@ -222,6 +222,10 @@
                     <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Por favor, insira um e-mail válido.</div>
                 </div>
                 <div class="col-md-3 mb-3">
+                    <label for="phone">Telefone</label>
+                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx" oninput="formatPhoneNumber(this)">
+                </div>
+                <div class="col-md-3 mb-3">
                     <label for="skype">Skype</label>
                     <input type="text" class="form-control" id="skype" ng-model="skype" name="skype" ng-change="updatePreview()">
                 </div>
@@ -243,6 +247,10 @@
                 <div class="email" ng-if="email" ng-class="{'fade-in': email}">
                     <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                     <span ng-bind="email"></span>
+                </div>
+                <div class="phone" ng-if="phone" ng-class="{'fade-in': phone}">
+                    <i class='bx bxs-phone'></i> <!-- Phone Icon -->
+                    <span ng-bind="phone"></span>
                 </div>
                 <div class="skype" ng-if="skype" ng-class="{'fade-in': skype}">
                     <i class='bx bxl-skype'></i> <!-- Skype Icon -->
@@ -267,7 +275,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 MAXX. Todos os direitos reservados.</p>
+        <!-- Footer content can be added here if needed -->
     </footer>
 
     <!-- Loading Overlay -->
@@ -325,6 +333,7 @@
             link.href = image;
             link.click();
         }
-    </script>
-</body>
-</html>
+
+        // Function to format the phone number
+        function formatPhoneNumber(input) {
+           
