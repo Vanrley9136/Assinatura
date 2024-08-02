@@ -79,6 +79,58 @@
             margin-top: -50px; /* Move content up to overlap header */
         }
 
+        /* Stepper Styles */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .step:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: -1;
+        }
+
+        .step.active .step-number {
+            background-color: #ffa000;
+            color: white;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #ddd;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .step:first-child:before {
+            content: none;
+        }
+
         /* Control Styles */
         .control {
             position: relative;
@@ -204,70 +256,107 @@
     
     <!-- Main Container -->
     <div class="container">
+        <!-- Stepper -->
+        <div class="stepper">
+            <div class="step" ng-class="{'active': step === 1}">
+                <div class="step-number">1</div>
+                <div class="step-text">STEP 1</div>
+            </div>
+            <div class="step" ng-class="{'active': step === 2}">
+                <div class="step-number">2</div>
+                <div class="step-text">STEP 2</div>
+            </div>
+            <div class="step" ng-class="{'active': step === 3}">
+                <div class="step-number">3</div>
+                <div class="step-text">STEP 3</div>
+            </div>
+            <div class="step" ng-class="{'active': step === 4}">
+                <div class="step-number">4</div>
+                <div class="step-text">STEP 4</div>
+            </div>
+        </div>
+
         <!-- Form Section -->
-        <form class="mb-4" name="signatureForm" novalidate>
+        <form class="mb-4" name="signatureForm" novalidate ng-show="step === 1">
             <div class="form-row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="nome">Nome <span style="color: red;">*</span></label>
                     <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome" ng-change="updatePreview()" required>
                     <div class="invalid-feedback" ng-show="signatureForm.nome.$touched && !nome">Obrigatório.</div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="cargo">Cargo <span style="color: red;">*</span></label>
                     <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo" ng-change="updatePreview()" required>
                     <div class="invalid-feedback" ng-show="signatureForm.cargo.$touched && !cargo">Obrigatório.</div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="email">E-mail <span style="color: red;">*</span></label>
                     <input type="email" class="form-control" id="email" ng-model="email" ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required ng-change="updatePreview()">
                     <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Obrigatório.</div>
                 </div>
-                <div class="col-md-3 mb-3">
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()" ng-disabled="!nome || !cargo || !email">Next</button>
+        </form>
+
+        <!-- Contact Details Section -->
+        <form class="mb-4" name="contactForm" novalidate ng-show="step === 2">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
                     <label for="phone">Telefone</label>
-                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx" oninput="formatPhoneNumber(this)">
+                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx or (xx) xxxx-xxxx" oninput="formatPhoneNumber(this)">
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-6 mb-3">
                     <label for="skype">Skype</label>
                     <input type="text" class="form-control" id="skype" ng-model="skype" name="skype" ng-change="updatePreview()">
                 </div>
             </div>
+            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Previous</button>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()">Next</button>
         </form>
 
-        <!-- Display Card Section -->
-        <div class="control" id="capture">
-            <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
-            <div class="info">
-                <div class="name fade-in" ng-if="nome">
-                    <i class='bx bxs-user'></i> <!-- User Icon -->
-                    <span ng-bind="nome"></span>
-                </div>
-                <div class="position fade-in" ng-if="cargo">
-                    <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
-                    <span ng-bind="cargo"></span>
-                </div>
-                <div class="email fade-in" ng-if="email">
-                    <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
-                    <span ng-bind="email"></span>
-                </div>
-                <div class="phone fade-in" ng-if="phone">
-                    <i class='bx bxs-phone'></i> <!-- Phone Icon -->
-                    <span ng-bind="phone"></span>
-                </div>
-                <div class="skype fade-in" ng-if="skype">
-                    <i class='bx bxl-skype'></i> <!-- Skype Icon -->
-                    <span ng-bind="skype"></span>
+        <!-- Preview Section -->
+        <div ng-show="step === 3">
+            <!-- Display Card Section -->
+            <div class="control" id="capture">
+                <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
+                <div class="info">
+                    <div class="name fade-in" ng-if="nome">
+                        <i class='bx bxs-user'></i> <!-- User Icon -->
+                        <span ng-bind="nome"></span>
+                    </div>
+                    <div class="position fade-in" ng-if="cargo">
+                        <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
+                        <span ng-bind="cargo"></span>
+                    </div>
+                    <div class="email fade-in" ng-if="email">
+                        <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
+                        <span ng-bind="email"></span>
+                    </div>
+                    <div class="phone fade-in" ng-if="phone">
+                        <i class='bx bxs-phone'></i> <!-- Phone Icon -->
+                        <span ng-bind="phone"></span>
+                    </div>
+                    <div class="skype fade-in" ng-if="skype">
+                        <i class='bx bxl-skype'></i> <!-- Skype Icon -->
+                        <span ng-bind="skype"></span>
+                    </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-secondary" ng-click="previousStep()">Previous</button>
+            <button type="button" class="btn btn-primary" ng-click="nextStep()">Capture</button>
         </div>
 
-        <!-- Button Section -->
-        <div class="text-center mt-4">
-            <button type="button" class="btn btn-primary btn-lg capture-btn" ng-disabled="!nome || !cargo || !email" onclick="captura()">
-                <i class='bx bxs-camera'></i> Capturar
-            </button>
-            <button type="button" class="btn btn-success btn-lg save-btn" onclick="salvarImagem()" id="arquivo" style="display:none;">
-                <i class='bx bxs-save'></i> Salvar
-            </button>
+        <!-- Capture and Save Section -->
+        <div ng-show="step === 4">
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-primary btn-lg capture-btn" onclick="captura()">
+                    <i class='bx bxs-camera'></i> Capturar
+                </button>
+                <button type="button" class="btn btn-success btn-lg save-btn" onclick="salvarImagem()" id="arquivo" style="display:none;">
+                    <i class='bx bxs-save'></i> Salvar
+                </button>
+            </div>
+            <button type="button" class="btn btn-secondary mt-4" ng-click="previousStep()">Previous</button>
         </div>
 
         <!-- Canvas Container -->
@@ -294,6 +383,17 @@
 
         // Define the controller
         app.controller('signatureController', function($scope) {
+            // Step management
+            $scope.step = 1;
+
+            $scope.nextStep = function() {
+                $scope.step++;
+            };
+
+            $scope.previousStep = function() {
+                $scope.step--;
+            };
+
             // Update the preview based on input changes
             $scope.updatePreview = function() {
                 // Get all info elements
@@ -338,8 +438,13 @@
         // Function to format the phone number
         function formatPhoneNumber(input) {
             var phone = input.value.replace(/\D/g, '');
-            phone = phone.substring(0, 11); // Allow only 11 digits
-            var formattedPhone = phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+            if (phone.length > 10) {
+                phone = phone.substring(0, 11); // Allow only 11 digits
+                var formattedPhone = phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+            } else {
+                phone = phone.substring(0, 10); // Allow only 10 digits for fixed lines
+                var formattedPhone = phone.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+            }
             input.value = formattedPhone;
         }
     </script>
