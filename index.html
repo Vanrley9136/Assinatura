@@ -86,7 +86,7 @@
             align-items: center;
             margin-bottom: 20px;
             position: relative;
-            padding: 0 40px; /* Added padding to align the steps */
+            padding: 0 20px; /* Added padding to align the steps */
         }
 
         .step {
@@ -346,7 +346,7 @@
                         <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
                         <span ng-bind="email"></span>
                     </div>
-                    <div class="phone fade-in" ng-if="phone">
+                    <div class="phone fade-in" ng-if="phone && phone !== 'undefined'">
                         <i class='bx bxs-phone'></i> <!-- Phone Icon -->
                         <span ng-bind="phone"></span>
                     </div>
@@ -459,6 +459,8 @@
             } else if (phone.length === 10) {
                 phone = phone.substring(0, 10); // Allow only 10 digits for fixed lines
                 var formattedPhone = phone.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+            } else {
+                formattedPhone = phone; // No formatting if length doesn't match
             }
             input.value = formattedPhone;
         }
