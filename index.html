@@ -6,17 +6,17 @@
     <title>Assinatura Starlink</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta property="og:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
+    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
     <meta property="og:type" content="website">
-    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="twitter:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
+    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta name="twitter:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
 
     <!-- Favicon -->
@@ -184,6 +184,7 @@
         /* Error Message Styles */
         .invalid-feedback {
             display: block;
+            color: red;
         }
 
         /* Animation Styles */
@@ -197,7 +198,7 @@
     <!-- Header Section -->
     <div class="header">
         <div class="title">
-            <i class='bx bxs-pencil'></i> Gerador de Assinatura MAXX
+            <i class='bx bxs-pencil'></i> Gerador de Assinatura Starlink
         </div>
     </div>
     
@@ -207,19 +208,19 @@
         <form class="mb-4" name="signatureForm" novalidate>
             <div class="form-row">
                 <div class="col-md-3 mb-3">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome" ng-change="updatePreview()">
-                    <div class="invalid-feedback" ng-show="signatureForm.nome.$touched && !nome">Por favor, insira seu nome.</div>
+                    <label for="nome">Nome <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome" ng-change="updatePreview()" required>
+                    <div class="invalid-feedback" ng-show="signatureForm.nome.$touched && !nome">Obrigatório.</div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="cargo">Cargo</label>
-                    <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo" ng-change="updatePreview()">
-                    <div class="invalid-feedback" ng-show="signatureForm.cargo.$touched && !cargo">Por favor, insira seu cargo.</div>
+                    <label for="cargo">Cargo <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo" ng-change="updatePreview()" required>
+                    <div class="invalid-feedback" ng-show="signatureForm.cargo.$touched && !cargo">Obrigatório.</div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="email">E-mail</label>
+                    <label for="email">E-mail <span style="color: red;">*</span></label>
                     <input type="email" class="form-control" id="email" ng-model="email" ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required ng-change="updatePreview()">
-                    <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Por favor, insira um e-mail válido.</div>
+                    <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Obrigatório.</div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="phone">Telefone</label>
