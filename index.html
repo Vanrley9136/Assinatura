@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura Starlink</title>
+    <title>Assinatura MAXX</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
-    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
+    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
     <meta property="og:type" content="website">
-    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Assinatura Starlink - Gerador de Assinaturas Starlink">
-    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas Starlink. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="twitter:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
+    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta name="twitter:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
 
     <!-- Favicon -->
@@ -83,7 +83,9 @@
         .stepper {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+            position: relative;
         }
 
         .step {
@@ -98,10 +100,14 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
+            width: calc(100% + 40px); /* Ensures the line connects */
             height: 2px;
             background-color: #ddd;
             z-index: -1;
+        }
+
+        .step:last-child:before {
+            display: none; /* Remove line after the last step */
         }
 
         .step.active .step-number {
@@ -119,16 +125,14 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
         }
 
         .step-text {
             font-size: 14px;
             font-weight: bold;
             color: #555;
-        }
-
-        .step:first-child:before {
-            content: none;
         }
 
         /* Control Styles */
@@ -250,7 +254,7 @@
     <!-- Header Section -->
     <div class="header">
         <div class="title">
-            <i class='bx bxs-pencil'></i> Gerador de Assinatura Starlink
+            <i class='bx bxs-pencil'></i> Gerador de Assinatura MAXX
         </div>
     </div>
     
@@ -303,7 +307,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="phone">Telefone</label>
-                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx or (xx) xxxx-xxxx" oninput="formatPhoneNumber(this)">
+                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx ou (xx) xxxx-xxxx" oninput="formatPhoneNumber(this)">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="skype">Skype</label>
@@ -343,7 +347,8 @@
                 </div>
             </div>
             <button type="button" class="btn btn-secondary" ng-click="previousStep()">Anterior</button>
-            <button type="button" class="btn btn-primary" ng-click="nextStep()">Capturar</button>
+            <button type="button" class="btn btn-primary" onclick="captura()">Capturar</button>
+            <button type="button" class="btn btn-success" onclick="salvarImagem()" id="arquivo" style="display:none;">Salvar</button>
         </div>
 
         <!-- Capture and Save Section -->
