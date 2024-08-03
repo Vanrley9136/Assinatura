@@ -348,17 +348,16 @@
                 </div>
             </div>
             <button type="button" class="btn btn-secondary btn-spacing" ng-click="previousStep()">Anterior</button>
-            <button type="button" class="btn btn-primary btn-spacing" onclick="captura()">Capturar</button>
-            <button type="button" class="btn btn-success btn-spacing" onclick="salvarImagem()" id="arquivo" style="display:none;">Salvar</button>
+            <button type="button" class="btn btn-primary btn-spacing" ng-click="nextStep()">Próximo</button>
         </div>
 
         <!-- Capture and Save Section -->
         <div ng-show="step === 4">
             <div class="text-center mt-4">
-                <button type="button" class="btn btn-primary btn-lg capture-btn" onclick="captura()">
+                <button type="button" class="btn btn-primary btn-lg capture-btn" ng-click="captura()">
                     <i class='bx bxs-camera'></i> Capturar
                 </button>
-                <button type="button" class="btn btn-success btn-lg save-btn btn-spacing" id="arquivo" style="display:none;">
+                <button type="button" class="btn btn-success btn-lg save-btn btn-spacing" ng-click="salvarImagem()" id="arquivo" style="display:none;">
                     <i class='bx bxs-save'></i> Salvar
                 </button>
             </div>
@@ -414,32 +413,36 @@
                     }
                 });
             };
+
+            // Function to capture the signature section
+            $scope.captura = function() {
+                if ($scope.step !== 4) return; // Ensure capture is only allowed in step 4
+
+                var loadingOverlay = document.getElementById('loading');
+                loadingOverlay.classList.add('show');
+                setTimeout(function() {
+                    html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function(canvas) {
+                        document.getElementById('canvascontainer').innerHTML = '';
+                        document.getElementById('canvascontainer').appendChild(canvas);
+                        document.getElementById('arquivo').style.display = 'block';
+                        loadingOverlay.classList.remove('show');
+                    });
+                }, 500); // delay to show loading overlay
+            };
+
+            // Function to save the captured image
+            $scope.salvarImagem = function() {
+                if ($scope.step !== 4) return; // Ensure save is only allowed in step 4
+
+                var canvas = document.getElementsByTagName("canvas")[0];
+                var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                var nome = document.getElementById('nome').value; 
+                var link = document.createElement('a');
+                link.download = nome + ".png";
+                link.href = image;
+                link.click();
+            };
         });
-
-        // Function to capture the signature section
-        function captura() {
-            var loadingOverlay = document.getElementById('loading');
-            loadingOverlay.classList.add('show');
-            setTimeout(function() {
-                html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function(canvas) {
-                    document.getElementById('canvascontainer').innerHTML = '';
-                    document.getElementById('canvascontainer').appendChild(canvas);
-                    document.getElementById('arquivo').style.display = 'block';
-                    loadingOverlay.classList.remove('show');
-                });
-            }, 500); // delay to show loading overlay
-        }
-
-        // Function to save the captured image
-        function salvarImagem() {
-            var canvas = document.getElementsByTagName("canvas")[0];
-            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            var nome = document.getElementById('nome').value; 
-            var link = document.createElement('a');
-            link.download = nome + ".png";
-            link.href = image;
-            link.click();
-        }
 
         // Function to format the phone number
         function formatPhoneNumber(input) {
