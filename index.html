@@ -275,10 +275,6 @@
                 <div class="step-number">3</div>
                 <div class="step-text">VISUALIZAR</div>
             </div>
-            <div class="step" ng-class="{'active': step === 4}">
-                <div class="step-number">4</div>
-                <div class="step-text">CAPTURAR E SALVAR</div>
-            </div>
         </div>
 
         <!-- Form Section -->
@@ -349,20 +345,6 @@
             </div>
             <button type="button" class="btn btn-secondary btn-spacing" ng-click="previousStep()">Anterior</button>
             <button type="button" class="btn btn-primary btn-spacing" onclick="captura()">Capturar</button>
-            <button type="button" class="btn btn-success btn-spacing" onclick="salvarImagem()" id="arquivo" style="display:none;">Salvar</button>
-        </div>
-
-        <!-- Capture and Save Section -->
-        <div ng-show="step === 4">
-            <div class="text-center mt-4">
-                <button type="button" class="btn btn-primary btn-lg capture-btn" onclick="captura()">
-                    <i class='bx bxs-camera'></i> Capturar
-                </button>
-                <button type="button" class="btn btn-success btn-lg save-btn btn-spacing" id="arquivo" style="display:none;">
-                    <i class='bx bxs-save'></i> Salvar
-                </button>
-            </div>
-            <button type="button" class="btn btn-secondary mt-4 btn-spacing" ng-click="previousStep()">Anterior</button>
         </div>
 
         <!-- Canvas Container -->
@@ -424,21 +406,14 @@
                 html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function(canvas) {
                     document.getElementById('canvascontainer').innerHTML = '';
                     document.getElementById('canvascontainer').appendChild(canvas);
-                    document.getElementById('arquivo').style.display = 'block';
+                    var nome = document.getElementById('nome').value; 
+                    var link = document.createElement('a');
+                    link.download = nome + ".png";
+                    link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                    link.click();
                     loadingOverlay.classList.remove('show');
                 });
             }, 500); // delay to show loading overlay
-        }
-
-        // Function to save the captured image
-        function salvarImagem() {
-            var canvas = document.getElementsByTagName("canvas")[0];
-            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            var nome = document.getElementById('nome').value; 
-            var link = document.createElement('a');
-            link.download = nome + ".png";
-            link.href = image;
-            link.click();
         }
 
         // Function to format the phone number
