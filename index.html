@@ -1,42 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt" ng-app="signatureApp">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura MAXX - Gerador de Assinaturas Moderno</title>
+    <title>Assinatura MAXX</title>
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta property="og:description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta property="og:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta property="og:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
     <meta property="og:url" content="https://yourwebsite.com/page-url">
     <meta property="og:type" content="website">
-    <meta name="description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Assinatura MAXX - Gerador de Assinaturas MAXX">
-    <meta name="twitter:description"
-        content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
+    <meta name="twitter:description" content="Crie assinaturas de e-mail personalizadas com o Gerador de Assinaturas MAXX. Adicione seu nome, cargo, e-mail, telefone e Skype para uma assinatura profissional.">
     <meta name="twitter:image" content="https://www.sejamaxx.com.br/assets/img/share.jpg">
 
     <!-- Favicon -->
-    <link rel="shortcut icon"
-        href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp"
-        type="image/x-icon">
-    <link rel="icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp"
-        type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp" type="image/x-icon">
+    <link rel="icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/documento-assinado-8305329-6618324.png?f=webp" type="image/x-icon">
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!-- html2canvas for capturing screenshots -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -55,9 +47,7 @@
         }
 
         /* Body, Form, Div Styles */
-        body,
-        form,
-        div {
+        body, form, div {
             font-family: 'Klavika Medium', sans-serif;
         }
 
@@ -86,8 +76,7 @@
         /* Container Styles */
         .container {
             max-width: 1000px;
-            margin-top: -50px;
-            /* Move content up to overlap header */
+            margin-top: -50px; /* Move content up to overlap header */
         }
 
         /* Stepper Styles */
@@ -97,8 +86,7 @@
             align-items: center;
             margin-bottom: 20px;
             position: relative;
-            padding: 0 20px;
-            /* Added padding to align the steps */
+            padding: 0 20px; /* Added padding to align the steps */
         }
 
         .step {
@@ -120,13 +108,11 @@
         }
 
         .step:first-child:before {
-            left: 50%;
-            /* Only half line before the first step */
+            left: 50%; /* Only half line before the first step */
         }
 
         .step:last-child:before {
-            right: 50%;
-            /* Only half line after the last step */
+            right: 50%; /* Only half line after the last step */
         }
 
         .step.active .step-number {
@@ -188,11 +174,7 @@
         }
 
         /* Name, Position, Email, Phone, Skype Styles with Icons */
-        .info .name,
-        .info .position,
-        .info .email,
-        .info .phone,
-        .info .skype {
+        .info .name, .info .position, .info .email, .info .phone, .info .skype {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
@@ -201,16 +183,10 @@
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        .info .name i,
-        .info .position i,
-        .info .email i,
-        .info .phone i,
-        .info .skype i {
-            color: #ffa000;
-            /* Icon color */
+        .info .name i, .info .position i, .info .email i, .info .phone i, .info .skype i {
+            color: #ffa000; /* Icon color */
             font-size: 20px;
-            margin-right: 10px;
-            /* Space between icon and text */
+            margin-right: 10px; /* Space between icon and text */
         }
 
         /* Name Styles */
@@ -228,9 +204,7 @@
         }
 
         /* Email, Phone, Skype Styles */
-        .info .email,
-        .info .phone,
-        .info .skype {
+        .info .email, .info .phone, .info .skype {
             font-size: 14px;
         }
 
@@ -241,10 +215,8 @@
         }
 
         .btn-spacing {
-            margin-right: 10px;
-            /* Spacing between buttons */
-            margin-top: 10px;
-            /* Spacing above buttons */
+            margin-right: 10px; /* Spacing between buttons */
+            margin-top: 10px; /* Spacing above buttons */
         }
 
         /* Loading Overlay Styles */
@@ -265,7 +237,7 @@
         .loading-overlay.show {
             display: flex;
         }
-
+        
         /* Error Message Styles */
         .invalid-feedback {
             display: block;
@@ -277,14 +249,8 @@
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
-
-        /* Esconder o canvas */
-        #capture {
-            display: none;
-        }
     </style>
 </head>
-
 <body ng-controller="signatureController">
     <!-- Header Section -->
     <div class="header">
@@ -292,7 +258,7 @@
             <i class='bx bxs-pencil'></i> Gerador de Assinatura MAXX
         </div>
     </div>
-
+    
     <!-- Main Container -->
     <div class="container">
         <!-- Stepper -->
@@ -307,7 +273,7 @@
             </div>
             <div class="step" ng-class="{'active': step === 3}">
                 <div class="step-number">3</div>
-                <div class="step-text">GERAR ASSINATURA</div>
+                <div class="step-text">VISUALIZAR</div>
             </div>
         </div>
 
@@ -316,28 +282,21 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="nome">Nome <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="nome" ng-model="nome"
-                        ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome"
-                        ng-change="updatePreview()" required>
+                    <input type="text" class="form-control" id="nome" ng-model="nome" ng-class="{'is-invalid': signatureForm.nome.$touched && !nome}" name="nome" ng-change="updatePreview()" required>
                     <div class="invalid-feedback" ng-show="signatureForm.nome.$touched && !nome">Obrigatório.</div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="cargo">Cargo <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="cargo" ng-model="cargo"
-                        ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo"
-                        ng-change="updatePreview()" required>
+                    <input type="text" class="form-control" id="cargo" ng-model="cargo" ng-class="{'is-invalid': signatureForm.cargo.$touched && !cargo}" name="cargo" ng-change="updatePreview()" required>
                     <div class="invalid-feedback" ng-show="signatureForm.cargo.$touched && !cargo">Obrigatório.</div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="email">E-mail <span style="color: red;">*</span></label>
-                    <input type="email" class="form-control" id="email" ng-model="email"
-                        ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required
-                        ng-change="updatePreview()">
+                    <input type="email" class="form-control" id="email" ng-model="email" ng-class="{'is-invalid': signatureForm.email.$touched && !email}" name="email" required ng-change="updatePreview()">
                     <div class="invalid-feedback" ng-show="signatureForm.email.$touched && !email">Obrigatório.</div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-spacing" ng-click="nextStep()"
-                ng-disabled="!nome || !cargo || !email">Próximo</button>
+            <button type="button" class="btn btn-primary btn-spacing" ng-click="nextStep()" ng-disabled="!nome || !cargo || !email">Próximo</button>
         </form>
 
         <!-- Contact Details Section -->
@@ -345,57 +304,51 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="phone">Telefone</label>
-                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone"
-                        ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx ou (xx) xxxx-xxxx"
-                        oninput="formatPhoneNumber(this)">
+                    <input type="text" class="form-control" id="phone" ng-model="phone" name="phone" ng-change="updatePreview()" placeholder="(xx) xxxxx-xxxx ou (xx) xxxx-xxxx" oninput="formatPhoneNumber(this)">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="skype">Skype</label>
-                    <input type="text" class="form-control" id="skype" ng-model="skype" name="skype"
-                        ng-change="updatePreview()">
+                    <input type="text" class="form-control" id="skype" ng-model="skype" name="skype" ng-change="updatePreview()">
                 </div>
             </div>
             <button type="button" class="btn btn-secondary btn-spacing" ng-click="previousStep()">Anterior</button>
             <button type="button" class="btn btn-primary btn-spacing" ng-click="nextStep()">Próximo</button>
         </form>
 
-        <!-- Generate Signature Section -->
+        <!-- Preview Section -->
         <div ng-show="step === 3">
-            <button type="button" class="btn btn-secondary btn-spacing" ng-click="previousStep()">Anterior</button>
-            <button type="button" class="btn btn-primary btn-spacing" onclick="captura()">Gerar Assinatura</button>
-        </div>
-
-        <!-- Canvas (Hidden) -->
-        <div class="control" id="capture">
-            <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
-            <div class="info">
-                <div class="name fade-in" ng-if="nome">
-                    <i class='bx bxs-user'></i>
-                    <!-- User Icon -->
-                    <span ng-bind="nome"></span>
-                </div>
-                <div class="position fade-in" ng-if="cargo">
-                    <i class='bx bxs-briefcase'></i>
-                    <!-- Briefcase Icon -->
-                    <span ng-bind="cargo"></span>
-                </div>
-                <div class="email fade-in" ng-if="email">
-                    <i class='bx bxs-envelope'></i>
-                    <!-- Envelope Icon -->
-                    <span ng-bind="email"></span>
-                </div>
-                <div class="phone fade-in" ng-if="phone && phone !== 'undefined'">
-                    <i class='bx bxs-phone'></i>
-                    <!-- Phone Icon -->
-                    <span ng-bind="phone"></span>
-                </div>
-                <div class="skype fade-in" ng-if="skype">
-                    <i class='bx bxl-skype'></i>
-                    <!-- Skype Icon -->
-                    <span ng-bind="skype"></span>
+            <!-- Display Card Section -->
+            <div class="control" id="capture">
+                <img src="https://i.postimg.cc/y8bwv83T/assinatura-novo.png" alt="Assinatura">
+                <div class="info">
+                    <div class="name fade-in" ng-if="nome">
+                        <i class='bx bxs-user'></i> <!-- User Icon -->
+                        <span ng-bind="nome"></span>
+                    </div>
+                    <div class="position fade-in" ng-if="cargo">
+                        <i class='bx bxs-briefcase'></i> <!-- Briefcase Icon -->
+                        <span ng-bind="cargo"></span>
+                    </div>
+                    <div class="email fade-in" ng-if="email">
+                        <i class='bx bxs-envelope'></i> <!-- Envelope Icon -->
+                        <span ng-bind="email"></span>
+                    </div>
+                    <div class="phone fade-in" ng-if="phone && phone !== 'undefined'">
+                        <i class='bx bxs-phone'></i> <!-- Phone Icon -->
+                        <span ng-bind="phone"></span>
+                    </div>
+                    <div class="skype fade-in" ng-if="skype">
+                        <i class='bx bxl-skype'></i> <!-- Skype Icon -->
+                        <span ng-bind="skype"></span>
+                    </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-secondary btn-spacing" ng-click="previousStep()">Anterior</button>
+            <button type="button" class="btn btn-primary btn-spacing" onclick="captura()">Capturar</button>
         </div>
+
+        <!-- Canvas Container -->
+        <div class="mt-4" id="canvascontainer"></div>
     </div>
 
     <!-- Footer -->
@@ -417,25 +370,25 @@
         var app = angular.module('signatureApp', []);
 
         // Define the controller
-        app.controller('signatureController', function ($scope) {
+        app.controller('signatureController', function($scope) {
             // Step management
             $scope.step = 1;
 
-            $scope.nextStep = function () {
+            $scope.nextStep = function() {
                 $scope.step++;
             };
 
-            $scope.previousStep = function () {
+            $scope.previousStep = function() {
                 $scope.step--;
             };
 
             // Update the preview based on input changes
-            $scope.updatePreview = function () {
+            $scope.updatePreview = function() {
                 // Get all info elements
                 var infoElements = document.querySelectorAll('.info > div');
 
                 // Apply animation styles if data exists
-                infoElements.forEach(function (el) {
+                infoElements.forEach(function(el) {
                     if (el.textContent.trim() !== '') {
                         el.classList.add('fade-in');
                     } else {
@@ -449,9 +402,11 @@
         function captura() {
             var loadingOverlay = document.getElementById('loading');
             loadingOverlay.classList.add('show');
-            setTimeout(function () {
-                html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function (canvas) {
-                    var nome = document.getElementById('nome').value;
+            setTimeout(function() {
+                html2canvas(document.querySelector("#capture"), { useCORS: true }).then(function(canvas) {
+                    document.getElementById('canvascontainer').innerHTML = '';
+                    document.getElementById('canvascontainer').appendChild(canvas);
+                    var nome = document.getElementById('nome').value; 
                     var link = document.createElement('a');
                     link.download = nome + ".png";
                     link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -477,5 +432,4 @@
         }
     </script>
 </body>
-
 </html>
